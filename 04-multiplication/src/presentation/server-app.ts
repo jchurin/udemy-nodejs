@@ -1,0 +1,31 @@
+import { CreateTable } from "../domain/use-cases/create-table.use-case.js";
+import { SaveFile } from "../domain/use-cases/save-file.use-case.js";
+
+interface RunOptions {
+  base: number;
+  limit: number;
+  displayTable: boolean;
+  name: string;
+  destination: string;
+}
+
+export class ServerApp {
+  static run({ base, limit, displayTable, name, destination }: RunOptions) {
+    console.log("Server running...");
+
+    const table = new CreateTable().execute({ base, limit });
+    const wasCreated = new SaveFile().execute({
+      fileContent: table,
+      filePath: destination,
+      fileName: name,
+    });
+
+    if (displayTable) {
+      console.log(table);
+    }
+
+    wasCreated ? console.log("File created") : console.log("File NOT created");
+
+    console.log("Server finished");
+  }
+}
