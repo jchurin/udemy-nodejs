@@ -21,7 +21,7 @@ export class SaveFile implements SaveFileUseCase {
       fs.writeFileSync(`${filePath}/${fileName}.txt`, fileContent);
       return true;
     } catch (error) {
-      console.error(error);
+      // console.error(error); // winston
       return false;
     }
   }

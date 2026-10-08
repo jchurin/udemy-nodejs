@@ -1,6 +1,5 @@
-import { writeFile } from "./app.old.js";
-import { yarg } from "./config/plugins/args.plugin.js";
-import { ServerApp } from "./presentation/server-app.js";
+import { yarg } from "./config/plugins/args.plugin";
+import { ServerApp } from "./presentation/server-app";
 
 (async () => {
   await main();
